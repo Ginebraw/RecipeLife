@@ -1,0 +1,37 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<main id="main">
+  <section>
+    <div class="container">
+      <br><br>
+    </div>
+  </section>
+
+</main><!-- End #main -->
+
+<div class="d-flex justify-content-center text-center">
+  <form class="p-5" style="background-color:#cda45e" method="post">
+    <h1 style="color:black ">Inicio de sesion</h1><br><br>
+    {% csrf_token %}
+    <table class="table">
+      {{ form.as_table }}
+    </table>
+    {% if user.is_authenticated %}
+    <script>
+      if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+      }
+    </script>
+
+    <div class="alert alert-success">El usuario ha sido registrado</div>
+    {% endif %}
+    <br><br>
+    <button type="submit" class="btn btn-dark">Ingresar</button>
+    <br><br><br>
+    <h6 style="color:black">¿Aún no estas registrado?</h6>
+    <p style="color: black;">Registrese <a style="color:brown;" href="{% url 'login' %}">aquí</a></p>
+  </form>
+</div><br><br>
+
+{% endblock %}

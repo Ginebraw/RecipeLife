@@ -1,0 +1,21 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<main id="main">
+    <section>
+        <div class="container">
+            <br><br>
+        </div>
+    </section>
+
+</main><!-- End #main -->
+<div class="d-flex justify-content-center text-center">
+    <form class="form" style="background-color:#cda45e" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+
+        <button type="submit" id="submit">Registrarse</button>
+    </form>
+</div>
+
+{% endblock %}
