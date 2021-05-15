@@ -1,8 +1,10 @@
+from django.contrib.auth.forms import UserModel
 from django.shortcuts import render, redirect
 from . models import Manga, Mangaka, Genero,Figuras,Marca
 from django.views import generic
 from .forms import MangakaForm,FigurasForm ,MangaForm,UserRegisterForm
 from django.contrib import messages
+from django.contrib.auth.models import User
 
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
@@ -44,14 +46,49 @@ def registro_usuarios(request):
             form.save()
             username = form.cleaned_data['username']
             messages.success(request, f'Usuario {username} creado')
-            return redirect("home")
+            return redirect("registro_usuarios")
     else:
         form = UserRegisterForm()
 
     context = {'form' : form}
     return render(request, 'registro_usuarios.html', context)
 
+def admin(request):
+    return render(
+        request,
+        'admin.html',
+    )
 
+#Usuarios#
+def listado_usuarios(request):
+    user = User.objects.all()
+    data = {
+        'user':user
+    }
+    return render(
+        request,
+        'listado_usuarios.html',data
+    )
+def modificar_usuario(request, id):
+    user= User.objects.get(id=id)
+    data = {
+        'form':UserRegisterForm(instance=user)
+    }
+
+    if request.method == 'POST':
+        formulario = UserRegisterForm(data=request.POST, instance=user)
+        if formulario.is_valid():
+            formulario.save()
+            data['mensaje'] ='Usuario Modificado Correctamente'
+            data['form'] = formulario
+    return render (
+        request,
+        'modificar_usuario.html',data
+    )
+def eliminar_usuario(request, id):
+    user =User.objects.get(id=id)
+    user.delete()
+    return redirect(to="listado_usuarios")
 
 #mangakas#
 def listado_mangakas(request):

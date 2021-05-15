@@ -1,0 +1,31 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+
+<h2> Listado de Usuarios </h2>
+
+    <table>
+        <tr>
+            <th>&nbsp;&nbsp;&nbsp;&nbsp; Nombre de usuario &nbsp;&nbsp;&nbsp;&nbsp; </th>
+            <th></th>
+            <th>Email &nbsp;&nbsp;&nbsp;&nbsp; </th>
+            <th></th>
+            <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; Opciones</th>
+        </tr>
+
+            {% for u in user %}
+            <tr>
+                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{u.username}}</td>
+                <td></td>
+                <td>{u.email}}</td>
+                <td> &nbsp;&nbsp;&nbsp;&nbsp; </td>
+                <th>
+                    <a href="{% url 'modificar_usuario' u.id %}">&nbsp;&nbsp;&nbsp;&nbsp;Modificar</a>
+                    <a href="{% url 'eliminar_usuario' u.id %}">&nbsp;&nbsp;&nbsp;Eliminar</a>
+                </th>
+            </tr>
+            {%endfor%}
+    </table>        
+
+
+{% endblock %}

@@ -58,11 +58,13 @@
           {% if user.is_authenticated  %}
             <li class="book-a-table text-center"><a href="#">{{ user.username }}</a></li>
             <li><a href="{% url 'logout'%}?next={{request.path}}">Cerrar sesión</a></li>
-
           {% else %}
             <li class="book-a-table text-center"><a href="{% url 'login' %}">Iniciar Sesion</a></li>
             <li><a href="{% url 'registro_usuarios' %}">Registro</a></li>
           {% endif %}
+          {% if user.is_authenticated  %}{% if user.is_staff %}
+            <li><a href="{% url 'listado_usuarios' %}">Admin</a></li>
+          {% else %}{% endif %}{% else %}{% endif %} 
         </ul>
       </nav><!-- .nav-menu -->
       {% endblock %}
