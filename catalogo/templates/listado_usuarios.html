@@ -1,10 +1,14 @@
 {% extends 'base_generic.html' %}
 
 {% block content %}
+<br><br><br><br><br><br>
 
-<h2> Listado de Usuarios </h2>
-
-    <table>
+<div class="section-title p-5">
+    <h2>Administración</h2>
+    <p>Lista de usuarios</p>
+</div>
+<div class="p-5 ">
+    <table class="table table-hover" style="background-color: #cda45e;">
         <tr>
             <th>&nbsp;&nbsp;&nbsp;&nbsp; Nombre de usuario &nbsp;&nbsp;&nbsp;&nbsp; </th>
             <th></th>
@@ -13,19 +17,19 @@
             <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; Opciones</th>
         </tr>
 
-            {% for u in user %}
-            <tr>
-                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{u.username}}</td>
-                <td></td>
-                <td>{u.email}}</td>
-                <td> &nbsp;&nbsp;&nbsp;&nbsp; </td>
-                <th>
-                    <a href="{% url 'modificar_usuario' u.id %}">&nbsp;&nbsp;&nbsp;&nbsp;Modificar</a>
-                    <a href="{% url 'eliminar_usuario' u.id %}">&nbsp;&nbsp;&nbsp;Eliminar</a>
-                </th>
-            </tr>
-            {%endfor%}
-    </table>        
-
+        {% for u in user %}
+        <tr>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{u.username}}</td>
+            <td></td>
+            <td>{{u.email}}</td>
+            <td> &nbsp;&nbsp;&nbsp;&nbsp; </td>
+            <th>
+                <a style="color: black;" href="{% url 'modificar_usuario' u.id %}">&nbsp;&nbsp;&nbsp;&nbsp;Modificar</a>
+                <a style="color: black;" href="{% url 'eliminar_usuario' u.id %}">&nbsp;&nbsp;&nbsp;Eliminar</a>
+            </th>
+        </tr>
+        {%endfor%}
+    </table>
+</div><br><br><br>
 
 {% endblock %}

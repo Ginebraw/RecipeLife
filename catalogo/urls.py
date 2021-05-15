@@ -21,8 +21,8 @@ urlpatterns = [
     path('eliminar-figura/<id>/', views.eliminar_figura, name='eliminar_figura'),
     path('registro-usuario/', views.registro_usuarios, name='registro_usuarios'),
     path('listado-usuarios/', views.listado_usuarios, name='listado_usuarios'),
-    path('modificar-usuario/', views.modificar_usuario, name='modificar_usuario'),
-    path('eliminar-usuarios/', views.eliminar_usuario, name='eliminar_usuario'),
+    path('modificar-usuario/<id>/', views.modificar_usuario, name='modificar_usuario'),
+    path('eliminar-usuarios/<id>/', views.eliminar_usuario, name='eliminar_usuario'),
 ]
 urlpatterns +=[
   

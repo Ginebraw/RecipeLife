@@ -17,15 +17,6 @@
     <table class="table">
       {{ form.as_table }}
     </table>
-    {% if user.is_authenticated %}
-    <script>
-      if (window.history.replaceState) {
-        window.history.replaceState(null, null, window.location.href);
-      }
-    </script>
-
-    <div class="alert alert-success">El usuario ha sido registrado</div>
-    {% endif %}
     <br><br>
     <button type="submit" class="btn btn-dark">Ingresar</button>
     <br><br><br>

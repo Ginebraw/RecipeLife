@@ -1,19 +1,24 @@
 {% extends 'base_generic.html' %}
 
 {% block content %}
+<br><br><br><br><br><br>
 
-<h2> Modificar Usuario  </h2>
+<div class="p-5">
 
-<form action="" method="POST">
-    {% csrf_token %}
-    <table>
-        {{ form.as_table }}
-    </table>
+    <div class="section-title">
+        <h2>Administración</h2>
+        <p>Modificar usuario</p>
+    </div>
 
-    <input type="reset" value="Limpiar">
-    <input type="submit" value="Modificar">
-</form>
+    <form  class="form" style="background-color:#cda45e" method="POST">
+        {% csrf_token %}
+        <table class="table table-hover">
+            {{ form.as_table }}
+        </table>
 
-{{ mensaje }}
+        <input type="reset" value="Limpiar">
+        <input type="submit" value="Modificar">
+    </form>
+</div>
 
 {% endblock %}

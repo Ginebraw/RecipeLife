@@ -53,11 +53,6 @@ def registro_usuarios(request):
     context = {'form' : form}
     return render(request, 'registro_usuarios.html', context)
 
-def admin(request):
-    return render(
-        request,
-        'admin.html',
-    )
 
 #Usuarios#
 def listado_usuarios(request):
@@ -79,15 +74,17 @@ def modificar_usuario(request, id):
         formulario = UserRegisterForm(data=request.POST, instance=user)
         if formulario.is_valid():
             formulario.save()
-            data['mensaje'] ='Usuario Modificado Correctamente'
+            messages.success(request, f'Usuario modificado')
             data['form'] = formulario
     return render (
         request,
         'modificar_usuario.html',data
     )
+
 def eliminar_usuario(request, id):
     user =User.objects.get(id=id)
     user.delete()
+    messages.success(request, f'Usuario eliminado')
     return redirect(to="listado_usuarios")
 
 #mangakas#
