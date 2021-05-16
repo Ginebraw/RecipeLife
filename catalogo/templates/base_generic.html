@@ -49,14 +49,16 @@
       {% block navbar %}
       <nav class="nav-menu d-none d-lg-block">
         <ul>
-
-          <li class="active"><a class="nav-link" href="{% url 'index' %}">Inicio</a></li>
-          <li><a href="#about">Nosotros</a></li>
-          <li><a href="#specials">Recomendaciones</a></li>
-          <li><a class="nav-link" href="#">Recetas</a></li>
-          <li><a href="{% url 'contacto' %}">Contáctenos</a></li>
-
+          
+            <li class="active"><a class="nav-link" href="{% url 'index' %}">Inicio</a></li>
+            <li><a href="{% url 'index' %}">Nosotros</a></li>
+            <li><a href="#specials">Recomendaciones</a></li>
+            <li><a class="nav-link" href="#">Recetas</a></li>
+            <li><a href="{% url 'contacto' %}">Contáctenos</a></li>
           {% if user.is_authenticated  %}
+              {% if user.is_staff %}
+                <li><a href="{% url 'listado_usuarios' %}">Admin</a></li>
+              {% else %}{% endif %} 
             <li class="book-a-table text-center"><a href="#">{{ user.username }}</a></li>
             <li><a href="{% url 'logout'%}?next={{request.path}}">Cerrar sesión</a></li>
 
@@ -65,10 +67,6 @@
             <li><a href="{% url 'registro_usuarios' %}">Registro</a></li>
 
           {% endif %}
-
-          {% if user.is_staff %}
-            <li><a href="{% url 'listado_usuarios' %}">Admin</a></li>
-          {% else %}{% endif %} 
 
         </ul>
       </nav><!-- .nav-menu -->
