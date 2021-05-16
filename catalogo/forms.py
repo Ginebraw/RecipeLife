@@ -1,7 +1,7 @@
 from django import forms
 from django.db.models.fields import files
 from django.forms import ModelForm, fields
-from .models import Mangaka, Manga , Figuras
+from .models import Mangaka, Manga , Figuras, Receta
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
@@ -19,6 +19,12 @@ class FigurasForm(ModelForm):
 
     class Meta:
         model = Figuras
+        fields = '__all__'
+
+class RecetaForm(ModelForm):
+
+    class Meta:
+        model = Receta
         fields = '__all__'
 
 class UserRegisterForm(UserCreationForm):

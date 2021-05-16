@@ -54,7 +54,7 @@
           <li><a href="#about">Nosotros</a></li>
           <li><a href="#specials">Recomendaciones</a></li>
           <li><a class="nav-link" href="#">Recetas</a></li>
-          <li><a href="#contact">Contáctenos</a></li>
+          <li><a href="{% url 'contacto' %}">Contáctenos</a></li>
 
           {% if user.is_authenticated  %}
             <li class="book-a-table text-center"><a href="#">{{ user.username }}</a></li>
