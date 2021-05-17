@@ -20,6 +20,18 @@ def index(request):
         'index.html',
     )
 
+def recetas(request):
+    return render(
+        request,
+        'recetas.html',
+    )
+
+def admin(request):
+    return render(
+        request,
+        'admin.html',
+    )
+
 def contacto(request):
     if request.method=="POST":
         subject=request.POST['asunto']
@@ -259,12 +271,13 @@ def crear_recetas(request):
         formulario = RecetaForm(request.POST, files=request.FILES)
         if formulario.is_valid():
             formulario.save()
-            data['mensaje'] = "Se ha creado una receta"
+            messages.success(request, f'Receta creada')
             return redirect(to="index")
     return render(
         request,
         'nueva_receta.html', data
     )
+
 def modificar_recetas(request, id):
     recetas= Receta.objects.get(id=id)
     data = {
@@ -275,7 +288,7 @@ def modificar_recetas(request, id):
         formulario = RecetaForm(data=request.POST, instance=recetas, files=request.FILES)
         if formulario.is_valid():
             formulario.save()
-            data['mensaje'] ='Modificado Correctamente'
+            messages.success(request, f'Modificar receta')
             data['form'] = RecetaForm(instance=Receta.objects.get(id=id))
     return render (
         request,
@@ -284,4 +297,5 @@ def modificar_recetas(request, id):
 def eliminar_recetas(request, id):
     recetas =Receta.objects.get(id=id)
     recetas.delete()
+    messages.success(request, f'Receta eliminada')
     return redirect(to="listado_recetas") 

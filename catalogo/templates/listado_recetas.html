@@ -1,0 +1,36 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+<br><br><br><br><br><br>
+
+<div class="section-title p-5">
+    <h2>Administración</h2>
+    <p>Lista de Recetas</p>
+</div>
+<div class="p-5 ">
+    <table class="table table-hover" style="background-color: #cda45e;">
+        <tr>
+            <th>&nbsp;&nbsp;&nbsp;&nbsp; Titulo &nbsp;&nbsp;&nbsp;&nbsp; </th>
+            <th></th>
+            <th>Tipo &nbsp;&nbsp;&nbsp;&nbsp; </th>
+            <th></th>
+            <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; Opciones</th>
+        </tr>
+
+        {% for r in receta %}
+        <tr>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{r.titulo}}</td>
+            <td></td>
+            <td> &nbsp;&nbsp;&nbsp;&nbsp; </td>
+            <td>{% for tipo in r.tipo.all %} {{ tipo }}{% if not forloop.last %}, {% endif %}{% endfor %}</td>
+            {% if user.is_authenticated %}{% if user.is_staff %}
+            <th>
+                <a href="{% url 'modificar_recetas' r.id %}">&nbsp;&nbsp;&nbsp;&nbsp;Modificar</a>
+                <a href="{% url 'eliminar_recetas' r.id %}">&nbsp;&nbsp;&nbsp;Eliminar</a>
+            </th>
+            {% else %}{% endif %}{% else %}{% endif %}
+        </tr>
+        {%endfor%}
+    </table>
+
+    {% endblock %}

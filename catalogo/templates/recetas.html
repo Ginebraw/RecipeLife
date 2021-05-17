@@ -1,0 +1,27 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Recetas</title>
+        <meta name="viewport" content="width=device-width">
+    </head>
+    <body>
+        <div class="p-5">
+            <br><br><br>
+            <br><br><br>
+            <br><br><br>
+            <div class="section-title">
+                <h2>Recetas</h2>
+                <p>Crear receta</p>
+            </div>
+
+            <a class="btn btn-primary" href="{% url 'nueva_receta' %}" style="float: left; font-size: 14px;">Agregar Receta <span class="glyphicon glyphicon-plus"></span></a>
+        </div>
+    </body>
+</html>
+
+{% endblock %}

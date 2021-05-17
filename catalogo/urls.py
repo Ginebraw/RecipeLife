@@ -24,10 +24,12 @@ urlpatterns = [
     path('modificar-usuario/<id>/', views.modificar_usuario, name='modificar_usuario'),
     path('eliminar-usuarios/<id>/', views.eliminar_usuario, name='eliminar_usuario'),
     path('contacto/' ,views.contacto, name='contacto'),
+    path('recetas', views.recetas, name='recetas'),
     path('listado-recetas/', views.listado_recetas, name='listado_recetas'),
     path('nueva-receta/', views.crear_recetas, name='nueva_receta'),
     path('modificar-recetas/<id>/', views.modificar_recetas, name='modificar_recetas'),
     path('eliminar-recetas/<id>/', views.eliminar_recetas, name='eliminar_recetas'),
+    path('admin', views.admin, name='admin'),
 ]
 urlpatterns +=[
   

@@ -1,0 +1,34 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  {% load static %}
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+<body>
+    <main id="main">
+        <section>
+            <div class="container">
+                <br><br><br>
+                <br><br><br>
+                <div class="content-center">
+                <section id="contact" class="contact">
+                    <div class="section-title">
+                        <h2>Bienvenido Administrador</h2>
+                        <p>{{ user.username }}</p>
+                        <br><br><br><br>
+                        <div class="text-center"><a class="p-5" href="{% url 'listado_usuarios' %}">Lista de usuarios</a>
+
+                            <a href="{% url 'listado_recetas' %}">Lista de Recetas</a></div>
+                    </div>
+                </section>
+
+    </main><!-- End #main -->
+</body>
+
+</html>
+
+{% endblock %}
