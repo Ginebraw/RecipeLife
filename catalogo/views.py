@@ -1,11 +1,11 @@
 from django.shortcuts import render, redirect
 from . models import Receta
-from .forms import RecetaForm, UserRegisterForm
+from . forms import RecetaForm, UserRegisterForm
+from django.views import generic
 
 from django.core.mail import send_mail
 from django.conf import settings
 
-from django.contrib.auth.forms import UserModel
 from django.contrib import messages
 from django.contrib.auth.models import User
 
@@ -19,9 +19,12 @@ def index(request):
     )
 
 def recetas(request):
+    num_recetas=Receta.objects.all()
+
     return render(
         request,
         'recetas.html',
+        context={'num_recetas':num_recetas},
     )
 
 def admin(request):
@@ -29,6 +32,9 @@ def admin(request):
         request,
         'admin.html',
     )
+
+class RecetaDetailView(generic.DetailView):
+    model = Receta
 
 def contacto(request):
     if request.method=="POST":
@@ -137,7 +143,7 @@ def modificar_recetas(request, id):
         formulario = RecetaForm(data=request.POST, instance=recetas, files=request.FILES)
         if formulario.is_valid():
             formulario.save()
-            messages.success(request, f'Modificar receta')
+            messages.success(request, f'Receta modificada exitosamente')
             data['form'] = RecetaForm(instance=Receta.objects.get(id=id))
     return render (
         request,

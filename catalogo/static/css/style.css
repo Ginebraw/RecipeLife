@@ -1867,3 +1867,14 @@ background: #AB3444;
 color: white;
 margin-bottom: 20px;
 }
+
+/*Centrado*/
+p.centrado{
+  text-align: center;
+}
+
+/*Centrado*/
+p.izquierda{
+  text-align: left;
+  text-justify: auto;
+}

@@ -32,16 +32,16 @@
             <th>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; Opciones</th>
         </tr>
 
-        {% for r in receta %}
+        {% for r in recetas %}
         <tr>
-            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{r.titulo}}</td>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{r.titulo}}</td>
             <td></td>
-            <td> &nbsp;&nbsp;&nbsp;&nbsp; </td>
-            <td>{% for in r.tipo.all %} {{ tipo }}{% if not forloop.last %}, {% endif %}{% endfor %}</td>
+            <td>{% for tipo in r.tipo.all %} {{ tipo }}{% if not forloop.last %}, {% endif %}{% endfor %}</td>
             {% if user.is_authenticated %}{% if user.is_staff %}
+            <td> &nbsp;&nbsp;&nbsp;&nbsp; </td>
             <th>
-                <a href="{% url 'modificar_recetas' r.id %}">&nbsp;&nbsp;&nbsp;&nbsp;Modificar</a>
-                <a href="{% url 'eliminar_recetas' r.id %}">&nbsp;&nbsp;&nbsp;Eliminar</a>
+                <a style="color: black;" href="{% url 'modificar_recetas' r.id %}">&nbsp;&nbsp;&nbsp;&nbsp;Modificar</a>
+                <a style="color: black;" href="{% url 'eliminar_recetas' r.id %}">&nbsp;&nbsp;&nbsp;Eliminar</a>
             </th>
             {% else %}{% endif %}{% else %}{% endif %}
         </tr>
