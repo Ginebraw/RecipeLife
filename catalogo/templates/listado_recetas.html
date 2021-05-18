@@ -1,5 +1,20 @@
 {% extends 'base_generic.html' %}
 
+{% block navbar %}
+<nav class="nav-menu d-none d-lg-block">
+  <ul>
+
+    <li class="active"><a class="nav-link" href="{% url 'index' %}">Inicio</a></li>
+    <li><a class="nav-link" href="{% url 'recetas' %}">Recetas</a></li>
+
+    {% if user.is_authenticated %}
+    {% if user.is_staff %}<li><a href="{% url 'admin' %}">Admin</a></li>{% else %}{% endif %}
+    {% else %}{% endif %}
+
+  </ul>
+</nav><!-- .nav-menu -->
+{% endblock %}
+
 {% block content %}
 <br><br><br><br><br><br>
 
@@ -22,7 +37,7 @@
             <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{r.titulo}}</td>
             <td></td>
             <td> &nbsp;&nbsp;&nbsp;&nbsp; </td>
-            <td>{% for tipo in r.tipo.all %} {{ tipo }}{% if not forloop.last %}, {% endif %}{% endfor %}</td>
+            <td>{% for in r.tipo.all %} {{ tipo }}{% if not forloop.last %}, {% endif %}{% endfor %}</td>
             {% if user.is_authenticated %}{% if user.is_staff %}
             <th>
                 <a href="{% url 'modificar_recetas' r.id %}">&nbsp;&nbsp;&nbsp;&nbsp;Modificar</a>
@@ -32,5 +47,6 @@
         </tr>
         {%endfor%}
     </table>
+</div>
 
-    {% endblock %}
+{% endblock %}

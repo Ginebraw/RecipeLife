@@ -46,32 +46,7 @@
       <!---<h1 class="logo mr-auto"><a href="index.html">RecipeLife </a></h1>--->
       <!-- Uncomment below if you prefer to use an image logo -->
 
-      {% block navbar %}
-      <nav class="nav-menu d-none d-lg-block">
-        <ul>
-          
-            <li class="active"><a class="nav-link" href="{% url 'index' %}">Inicio</a></li>
-            <li><a href="#about">Nosotros</a></li>
-            <li><a href="#specials">Recomendaciones</a></li>
-            <li><a class="nav-link" href="{% url 'recetas' %}">Recetas</a></li>
-            <li><a href="#contact">Encuentranos</a></li>
-            <li><a href="{% url 'contacto' %}">Contáctenos</a></li>
-          {% if user.is_authenticated  %}
-              {% if user.is_staff %}
-                <li><a href="{% url 'admin' %}">Admin</a></li>
-              {% else %}{% endif %} 
-            <li class="book-a-table text-center"><a href="#">{{ user.username }}</a></li>
-            <li><a href="{% url 'logout'%}?next={{request.path}}">Cerrar sesión</a></li>
-
-          {% else %}
-            <li class="book-a-table text-center"><a href="{% url 'login' %}">Iniciar Sesion</a></li>
-            <li><a href="{% url 'registro_usuarios' %}">Registro</a></li>
-
-          {% endif %}
-
-        </ul>
-      </nav><!-- .nav-menu -->
-      {% endblock %}
+      {% block navbar %}{% endblock %}
 
     </div>
   </header>
@@ -85,15 +60,17 @@
       <div class="container">
         <div class="row">
 
-          <div class="col-lg-3 col-md-6">
+          <div class="col-lg-6 col-md-6">
             <div class="footer-info">
               <h3>RecipeLife</h3>
-              <p>
+              <div>
+              <h6>
                 Av. Esquina Blanca 501 <br>
                 Maipú, RM, CHL<br><br>
                 <strong>Phone:</strong> +562 7467 7384<br>
                 <strong>Email:</strong> contacto@recipelife.com<br>
-              </p>
+              </h6>
+              </div>
               <div class="social-links mt-3">
                 <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
                 <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
@@ -104,13 +81,13 @@
             </div>
           </div>
 
-          <div class="col-lg-2 col-md-6 footer-links">
+          <div class="col-lg-6 col-md-6 footer-links">
             <h4>Links</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Inicio</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Nosotros</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Recetas</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Contáctenos</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{% url 'index' %}">Inicio</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#about">Nosotros</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{% url 'recetas' %}">Recetas</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="{% url 'contacto' %}">Contáctenos</a></li>
             </ul>
           </div>
         </div>

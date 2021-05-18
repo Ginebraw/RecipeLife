@@ -1,5 +1,32 @@
 {% extends "base_generic.html" %}
 
+{% block navbar %}
+<nav class="nav-menu d-none d-lg-block">
+  <ul>
+
+    <li class="active"><a class="nav-link" href="{% url 'index' %}">Inicio</a></li>
+    <li><a href="#about">Nosotros</a></li>
+    <li><a href="#specials">Especiales</a></li>
+    <li><a href="#contact">Encuentranos</a></li>
+    <li><a href="{% url 'contacto' %}">Contáctenos</a></li>
+    <li><a class="nav-link" href="{% url 'recetas' %}">Recetas</a></li>
+
+    {% if user.is_authenticated %}
+    {% if user.is_staff %}<li><a href="{% url 'admin' %}">Admin</a></li>{% else %}{% endif %}
+    <li class="book-a-table text-center"><a href="#">{{ user.username }}</a></li>
+    <li><a href="{% url 'logout'%}?next={{request.path}}">Cerrar sesión</a></li>
+
+    {% else %}
+    <li class="book-a-table text-center"><a href="{% url 'login' %}">Iniciar Sesion</a></li>
+    <li><a href="{% url 'registro_usuarios' %}">Registro</a></li>
+
+    {% endif %}
+
+  </ul>
+</nav><!-- .nav-menu -->
+{% endblock %}
+
+
 {% block content %}
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +46,7 @@
           <h1>Bienvenido a <span>RecipeLife</span></h1>
 
           <div class="btns">
-            <a href="#menu" class="btn-menu animated fadeInUp scrollto">Recetas</a>
+            <a href="{% url 'recetas' %}" class="btn-menu animated fadeInUp scrollto">Recetas</a>
             <!--<a href="#book-a-table" class="btn-book animated fadeInUp scrollto">Añadir Receta</a>-->
           </div>
         </div>
@@ -83,7 +110,7 @@
             <div class="box" data-aos="zoom-in" data-aos-delay="300">
               <span>03</span>
               <h4> Intuitivo</h4>
-              <p>No necesitaras tutoriales, ya que nuestra pagina es muy intuitiva y facil de usar.</p>
+              <p>No necesitaras tutoriales, ya que nuestra pagina es muy intuitiva y de simple de uso. </p>
             </div>
           </div>
 
@@ -215,7 +242,7 @@
           <h2>Contacto</h2>
           <p>Encuentranos</p>
         </div>
-        
+
       </div>
 
       <div data-aos="fade-up">
@@ -226,9 +253,9 @@
 
       <div class="container" data-aos="fade-up">
 
-        <div class="row mt-5">
+        <div class="row mt-5 justify-content-center">
 
-          <div class="col-lg-4">
+          <div class=" col-lg-4">
             <div class="info">
               <div class="address">
                 <i class="icofont-google-map"></i>
@@ -249,6 +276,8 @@
             </div>
           </div>
         </div>
+      </div>
+
       </div>
     </section><!-- End Contact Section -->
 
