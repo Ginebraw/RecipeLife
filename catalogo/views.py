@@ -33,6 +33,14 @@ def admin(request):
         'admin.html',
     )
 
+#Preguntas
+
+def preguntas(request):
+    return render(
+        request,
+        'preguntas.html',
+    )
+
 class RecetaDetailView(generic.DetailView):
     model = Receta
 
