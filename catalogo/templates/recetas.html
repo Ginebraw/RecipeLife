@@ -44,10 +44,13 @@
             <h2>Detalle</h2>
             <p>Recetas</p>
         </div>
-        {% if user.is_authenticated %}
-        <a class="btn btn-primary" href="{% url 'nueva_receta' %}" style="float: left; font-size: 14px;">Agregar Receta
-            <span class="glyphicon glyphicon-plus"></span></a>
-        {% else %}{% endif %}
+        <div class="php-email-form">
+            {% if user.is_authenticated %}
+            <a class="btn" href="{% url 'nueva_receta' %}" style="float: left; font-size: 14px; background-color: #cda45e;">Agregar
+                Receta
+                <span class="glyphicon glyphicon-plus"></span></a>
+            {% else %}{% endif %}
+        </div>
     </div>
 
     <div class="row p-5">
@@ -57,7 +60,7 @@
                 <img class="card-img-top" src=" {{ receta.imagen.url }}" width="300" height="300">
                 <div class="card-body">
                     <h5 style="color: #cda45e;" class="card-title text-uppercase">{{ receta.titulo }}</h5>
-                    <a href="{% url 'receta_detail' receta.pk %}" class="btn btn-primary" style="float: right;">
+                    <a href="{% url 'receta_detail' receta.pk %}" class="btn" style="float: right; background-color: #cda45e;">
                         Ver más
                     </a>
                 </div>
